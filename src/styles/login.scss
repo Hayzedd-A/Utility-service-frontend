@@ -1,0 +1,99 @@
+body {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  background-color: #efefee;
+}
+hr {
+  height: 1px;
+  inset: 0;
+  border: 0;
+  background-color: rgb(117, 108, 255);
+}
+.login-page {
+  display: flex;
+  position: relative;
+  .form-container {
+    display: flex;
+    gap: 2em;
+    padding: 4em;
+    align-items: center;
+  }
+  .login-component,
+  .signup-component {
+    display: grid;
+    gap: 1em;
+    .login-form,
+    .signup-form {
+      form {
+        &#signup {
+          grid-template-columns: 1fr 1fr;
+          button {
+            grid-column: span 2;
+          }
+        }
+        display: grid;
+        gap: 1em;
+        label {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          text-align: start;
+          input {
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 1em;
+            inset: none;
+            &:focus {
+              border: none;
+            }
+            &:active {
+              border: none;
+            }
+          }
+          .showPasswordIcon {
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+          }
+        }
+        button {
+          padding: 0.5em 1em;
+          background-color: rgb(117, 108, 255);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+      p button {
+        background-color: unset;
+        border: none;
+        color: rgb(117, 108, 255);
+        cursor: pointer;
+      }
+    }
+    // background-color: aquamarine;
+    padding: 3em 4em;
+    .header {
+      text-align: start;
+    }
+  }
+  .image-cover {
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+    border-radius: 2em;
+    overflow: hidden;
+    // left: 4em;
+    top: 4em;
+    bottom: 4em;
+    // right: 50%;
+    right: 0;
+    img {
+      object-fit: cover;
+      //   width: 100%;
+      height: 100%;
+    }
+  }
+}
