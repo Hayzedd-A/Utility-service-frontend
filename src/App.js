@@ -4,6 +4,8 @@ import { AppProvider } from "./config/AppContext";
 import { NotificationContainer } from "react-notifications";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VerifyEmail from "./pages/VerifyEmail";
+import NotFoundPage from "./pages/NotFoundPage";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,10 +13,15 @@ function App() {
       path: "/",
       exact: true,
       element: <Login />,
+      errorElement: <NotFoundPage />,
     },
     {
       path: "verify-email-status",
       element: <VerifyEmail />,
+    },
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
     },
   ]);
   return (

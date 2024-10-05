@@ -11,7 +11,7 @@ function Login() {
     // check for token in the localstorage, if exist then validate it from the server then redirect to the dashboard page
     // else show the login page
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       if (token) {
         // validate token
         axios
@@ -34,12 +34,14 @@ function Login() {
   });
 
   return (
-    <div className="login-page">
-      <div className="form-container">
-        <LoginComp />
-        <SignupComp />
+    <div className="page-container">
+      <div className="login-page">
+        <div className="form-container">
+          <LoginComp />
+          <SignupComp />
+        </div>
+        <Image />
       </div>
-      <Image />
     </div>
   );
 }

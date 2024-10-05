@@ -1,7 +1,9 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+
 body {
-  height: 100vh;
-  display: grid;
-  place-content: center;
   background-color: #efefee;
 }
 
@@ -10,6 +12,12 @@ hr {
   inset: 0;
   border: 0;
   background-color: rgb(117, 108, 255);
+}
+
+.page-container {
+  height: 100vh;
+  display: grid;
+  place-content: center;
 }
 
 .login-page {
@@ -123,4 +131,139 @@ hr {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100%;
+}
+
+.dashboard {
+  padding: 1em 2em;
+}
+.dashboard .navbar {
+  display: none;
+  padding: 8px 1em;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard .navbar svg {
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
+.dashboard .navbar > div {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+.dashboard .navbar > div img {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max: 600px) {
+  .dashboard .navbar {
+    display: flex;
+  }
+}
+.dashboard .body {
+  display: flex;
+  gap: 1em;
+}
+.dashboard .body .sidebar {
+  padding: 0 8px;
+  border-right: 8px solid rgb(117, 108, 255);
+  background-color: rgb(196, 192, 255);
+  flex: 1;
+  max-height: 100vh;
+  flex-basis: 8em;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard .body .sidebar ul {
+  display: grid;
+  gap: 1em;
+  list-style: none;
+}
+.dashboard .body .sidebar ul li {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.dashboard .body .sidebar ul li img {
+  width: 2em;
+  height: 2em;
+}
+.dashboard .body .sidebar ul li a {
+  text-decoration: none;
+  color: rgb(117, 108, 255);
+}
+.dashboard .body .sidebar ul a {
+  text-decoration: none;
+}
+.dashboard .body .main {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+.dashboard .wallet {
+  background-color: rgb(117, 108, 255);
+  border-radius: 1em;
+  color: #efefee;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+}
+.dashboard .wallet .amount button {
+  padding: 0.5em 1em;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: -2px -2px 8px 0px rgb(11, 103, 118);
+  border-radius: 1em;
+}
+.dashboard .wallet .amount button:hover {
+  background-color: rgb(196, 192, 255);
+  color: rgb(117, 108, 255);
+}
+.dashboard .wallet .plot {
+  flex: 3;
+}
+.dashboard #actions {
+  margin-top: 1em;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboard #actions button {
+  padding: 0.5em 1em;
+  background-color: rgb(117, 108, 255);
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: -2px -2px 8px 0px rgb(11, 103, 118);
+}
+.dashboard #actions button:hover {
+  background-color: rgb(196, 192, 255);
+  color: rgb(117, 108, 255);
+}
+.dashboard .services#services {
+  display: grid;
+  gap: 1em;
+  margin-top: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+}
+.dashboard .services#services .ant-card-bordered {
+  background-color: rgb(117, 108, 255);
+  color: white;
+}
+.dashboard .services#services .ant-card-bordered p,
+.dashboard .services#services .ant-card-bordered div {
+  color: white;
+  font-weight: 900;
+  font-size: large;
 }/*# sourceMappingURL=login.css.map */

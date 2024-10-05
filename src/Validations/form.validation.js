@@ -3,7 +3,7 @@ import { z } from "zod";
 // Define the schema for the signup form data
 // This schema validates the required fields, the format of the fields, and the constraints on the fields
 // For example, it checks if the email is a valid email, if the phone number is between 10 and 15 characters, etc.
-export const user_schema = z
+export const user_signup_schema = z
   .object({
     email: z.string().email({ message: "Email is not a valid email" }),
     phone: z
@@ -15,7 +15,7 @@ export const user_schema = z
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters long" })
-      .regex(/^[a-zA-Z0-9]+$/, {
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, {
         message: "Password must contain uppercase, lowercase and number",
       }),
     confirm_password: z.string(),
@@ -24,3 +24,15 @@ export const user_schema = z
     message: "Confirm Passwords do not match",
     path: ["Confirm Password"],
   });
+
+// Define the schema for the login form data
+// This schema validates the required fields and the format of the fields
+export const user_login_schema = z.object({
+  email: z.string().email({ message: "Email is not a valid email" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long" })
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, {
+      message: "Password must contain uppercase, lowercase and number",
+    }),
+});

@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Result } from "antd";
 import { requestOTP } from "../../Controllers/Signup.controller";
-const ErrorVerification = () => {
-  const handleResendOTP = ({ data }) => {
+const ErrorVerification = ({ data }) => {
+  const handleResendOTP = () => {
     // Send OTP to user's registered email
     requestOTP(data);
   };
