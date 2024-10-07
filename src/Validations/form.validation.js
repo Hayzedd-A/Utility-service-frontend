@@ -36,3 +36,21 @@ export const user_login_schema = z.object({
       message: "Password must contain uppercase, lowercase and number",
     }),
 });
+
+// Define the schema for the Password reset request form data
+export const user_email_schema = z.object({
+  email: z.string().email({ message: "Email is not a valid email" }),
+});
+
+export const reset_password_schema = z.object({
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long" })
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, {
+      message: "Password must contain uppercase, lowercase and number",
+    }),
+  email: z.string().email({ message: "Enter a valid email" }),
+  recovery_code: z.string({
+    message: "Something went wrong, could not get your token",
+  }),
+});

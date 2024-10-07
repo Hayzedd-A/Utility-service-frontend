@@ -3,16 +3,29 @@ import Header from "./Header";
 import { AppContext } from "../../config/AppContext";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { submitLogin } from "../../Controllers/Signup.controller";
+import LoadingSpinner from "../Global/LoadingSpinner";
+import UtilModal from "../Global/UtilModal";
+import { Result } from "antd";
+import PasswordRecovery from "./PasswordRecovery";
 
-function LoginForm() {
-  const { setLoginForm } = useContext(AppContext);
+function LoginForm({ setUtilContent }) {
+  const { setLoginForm, modalOpen, setModalOpen } = useContext(AppContext);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleForgotPassword = () => {
+    // show a pop up of the password recovery interface
+    setModalOpen(true);
+    setUtilContent(<PasswordRecovery setUtilContent={setUtilContent} />);
+  };
 
   const handleFormSubmit = async e => {
     e.preventDefault();
+    setLoading(true);
     const response = await submitLogin({ email, password });
+    setLoading(false);
     if (response) {
       //  redirect to dashboard page
       window.location.href = "/dashboard";
@@ -20,6 +33,13 @@ function LoginForm() {
   };
   return (
     <div className="login-form">
+      {/* <UtilModal>
+        <Result
+          status="success"
+          title="Check your registered email for a password reset link"
+          // subTitle="You need to verify your email. Check your email inbox or spam folder for the link to verify your email."
+        />
+      </UtilModal> */}
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="email">
           <span>Email</span>
@@ -48,8 +68,12 @@ function LoginForm() {
             )}
           </span>
         </label>
-        <button type="submit">Login</button>
-        <a href="#">Forgot Password?</a>
+        <button type="submit">
+          Login <LoadingSpinner loading={loading} />
+        </button>
+        <a onClick={handleForgotPassword} href="#">
+          Forgot Password?
+        </a>
       </form>
       <p>
         Don't have an account?{" "}

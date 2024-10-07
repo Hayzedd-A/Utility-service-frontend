@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VerifyEmail from "./pages/VerifyEmail";
 import NotFoundPage from "./pages/NotFoundPage";
 import Dashboard from "./pages/Dashboard";
+import PasswordRecovery from "./pages/PasswordRecovery";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/dashboard",
       element: <Dashboard />,
+    },
+    {
+      path: "password-recovery",
+      element: <PasswordRecovery />,
     },
   ]);
   return (

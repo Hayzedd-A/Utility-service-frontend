@@ -5,13 +5,13 @@ import { AppContext } from "../../config/AppContext";
 
 // This component is hidden until the user clicks on the signup button in the login component.
 
-function SignupComp() {
+function SignupComp({ setUtilContent }) {
   // Get the current state of the login form from the AppContext
   const { loginForm } = useContext(AppContext);
   const [visibility, setVisibility] = useState("hidden");
 
   // If the login form is set to "signup", make the signup component visible
-  // Otherwise, make it hidden
+
   useEffect(() => {
     console.log(loginForm);
     if (loginForm === "signup") {
@@ -27,7 +27,7 @@ function SignupComp() {
       }}
     >
       <Header content={"Let's create your account"} />
-      <SignupForm />
+      <SignupForm setUtilContent={setUtilContent} />
     </div>
   );
 }

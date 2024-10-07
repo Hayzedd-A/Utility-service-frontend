@@ -5,8 +5,9 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { submitSignup } from "../../Controllers/Signup.controller";
 import UtilModal from "../Global/UtilModal";
 import SignupSuccess from "./SignupSuccess";
+import LoadingSpinner from "../Global/LoadingSpinner";
 
-function SignupForm() {
+function SignupForm({ setUtilContent }) {
   const { setLoginForm, setModalOpen } = useContext(AppContext);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -15,6 +16,8 @@ function SignupForm() {
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [successSignup, setSuccessSignup] = useState(false);
   const formData = () => ({
     email,
     phone,
@@ -24,10 +27,15 @@ function SignupForm() {
     confirm_password: confirmPassword,
   });
   const handleSubmit = async event => {
+    event.preventDefault();
+    setLoading(true);
     let response = await submitSignup(event, formData());
+    setLoading(false);
     if (response) {
       // signup was successful, display success Modal and redirect to email verification page
       setModalOpen(true);
+      console.log(setUtilContent);
+      setUtilContent(<SignupSuccess />);
       setLoginForm("login");
       // clear form data
       setEmail("");
@@ -40,9 +48,7 @@ function SignupForm() {
   };
   return (
     <div className="signup-form">
-      <UtilModal>
-        <SignupSuccess />
-      </UtilModal>
+      {/* <UtilModal>{successSignup && <SignupSuccess />}</UtilModal> */}
       <form id="signup" onSubmit={event => handleSubmit(event)}>
         <label htmlFor="email">
           <span>Email</span>
@@ -111,7 +117,9 @@ function SignupForm() {
             id="confirmPassword"
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit">
+          Sign Up <LoadingSpinner loading={loading} />
+        </button>
       </form>
       <p>
         Already have an account?{" "}

@@ -1,11 +1,12 @@
 import Notification from "../components/Global/Notifications";
 import { sendToServer, setLoginHeaders } from "../config/functions";
 import {
+  user_email_schema,
   user_login_schema,
   user_signup_schema,
 } from "../Validations/form.validation";
 
-// Function to handle form submission for signup
+// Function to handle signup form submission
 export const submitSignup = async (event, formData) => {
   try {
     // prevent default submit
@@ -105,6 +106,88 @@ export const submitLogin = async data => {
 
     Notification("error", {
       title: "Login Failed",
+      body: error.message,
+    })();
+    return false;
+  }
+};
+
+// Function to handle request password reset form submission
+export const requestResetPassword = async email => {
+  try {
+    console.log(email);
+    // validate the data
+    let validationResult = user_email_schema.safeParse({ email });
+    if (!validationResult.success) {
+      console.log(validationResult);
+      // the validation returns an object containing a stringified array of error messages
+      validationResult = await JSON.parse(validationResult.error.message);
+
+      // iterate through the array to display different notification for each error
+      for (let eachError of validationResult) {
+        Notification("error", {
+          title: eachError.path[0],
+          body: eachError.message,
+        })();
+      }
+      return;
+    }
+    // submit the form to the server
+    const endpoint = `customers/initiate-password-recovery`;
+    const response = await sendToServer(endpoint, "POST", { email });
+    console.log(response);
+    if (response.data.status !== "success") {
+      // If the reset password is unsucceessful
+      throw new Error(response.data.message);
+    }
+    // If the reset password is successful, return true
+    return true;
+  } catch (error) {
+    console.error(error.message);
+
+    Notification("error", {
+      title: "Reset Password Failed",
+      body: error.message,
+    })();
+    return false;
+  }
+};
+
+// Function to handle password reset form submission
+export const submitResetPassword = async data => {
+  try {
+    console.log(data);
+    // validate the data
+    let validationResult = user_login_schema.safeParse(data);
+    if (!validationResult.success) {
+      console.log(validationResult);
+      // the validation returns an object containing a stringified array of error messages
+      validationResult = await JSON.parse(validationResult.error.message);
+
+      // iterate through the array to display different notification for each error
+      for (let eachError of validationResult) {
+        Notification("error", {
+          title: eachError.path[0],
+          body: eachError.message,
+        })();
+      }
+      return;
+    }
+    // submit the form to the server
+    const endpoint = `customers/complete-password-recovery`;
+    const response = await sendToServer(endpoint, "POST", data);
+    console.log(response);
+    if (response.data.status !== "success") {
+      // If the reset password is unsuccessful
+      throw new Error(response.data.message);
+    }
+    // If the reset password is successful, return a success message
+    return true;
+  } catch (error) {
+    console.error(error.message);
+
+    Notification("error", {
+      title: "Reset Password Failed",
       body: error.message,
     })();
     return false;

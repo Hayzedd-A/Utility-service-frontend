@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LoginComp from "../components/login/LoginComp";
 import "../styles/login.css";
 import SignupComp from "../components/login/SignupComp";
@@ -7,6 +7,7 @@ import UtilModal from "../components/Global/UtilModal";
 import axios from "axios";
 
 function Login() {
+  const [utilContent, setUtilContent] = useState(null);
   useEffect(() => {
     // check for token in the localstorage, if exist then validate it from the server then redirect to the dashboard page
     // else show the login page
@@ -36,9 +37,13 @@ function Login() {
   return (
     <div className="page-container">
       <div className="login-page">
+        <UtilModal>
+          {/* Add your modal content here */}
+          {utilContent}
+        </UtilModal>
         <div className="form-container">
-          <LoginComp />
-          <SignupComp />
+          <LoginComp setUtilContent={setUtilContent} />
+          <SignupComp setUtilContent={setUtilContent} />
         </div>
         <Image />
       </div>
