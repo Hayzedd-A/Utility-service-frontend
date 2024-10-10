@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Dashboard/Navbar";
 import Wallet from "../components/Dashboard/Wallet";
-import WalletAction from "../components/Dashboard/WalletAction";
 import Services from "../components/Dashboard/Services";
 import Sidebar from "../components/Dashboard/Sidebar";
-import Notification from "../components/Global/Notifications";
-import axios from "axios";
-import { baseURL } from "../config/functions";
 import { verifyToken } from "../Controllers/Signup.controller";
 import { useNavigate } from "react-router-dom";
 
@@ -30,13 +26,9 @@ function Dashboard() {
       } catch (error) {
         console.log(error.message);
         navigation("/login");
-        Notification("error", {
-          title: "Something went wrong",
-          body: error.message,
-        })();
       }
     })();
-  }, []);
+  }, [navigation]);
   return (
     loggedIn && (
       <div className="dashboard">

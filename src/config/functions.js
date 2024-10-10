@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const baseURL = "http://127.0.0.1:4030/api";
+export const baseURL = "http://192.168.1.93:4030/api";
+// export const baseURL = "http://127.0.0.1:4030/api";
 
 export const sendToServer = async (endPoint, method, body = "") => {
   const headers = {
