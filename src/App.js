@@ -11,7 +11,7 @@ import PasswordRecovery from "./pages/PasswordRecovery";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/login",
       exact: true,
       element: <Login />,
       errorElement: <NotFoundPage />,

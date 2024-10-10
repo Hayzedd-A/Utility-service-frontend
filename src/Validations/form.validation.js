@@ -1,4 +1,5 @@
 import { z } from "zod";
+const password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/;
 
 // Define the schema for the signup form data
 // This schema validates the required fields, the format of the fields, and the constraints on the fields
@@ -15,7 +16,7 @@ export const user_signup_schema = z
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters long" })
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, {
+      .regex(password_regex, {
         message: "Password must contain uppercase, lowercase and number",
       }),
     confirm_password: z.string(),
@@ -32,7 +33,7 @@ export const user_login_schema = z.object({
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long" })
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, {
+    .regex(password_regex, {
       message: "Password must contain uppercase, lowercase and number",
     }),
 });
@@ -46,7 +47,7 @@ export const reset_password_schema = z.object({
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long" })
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, {
+    .regex(password_regex, {
       message: "Password must contain uppercase, lowercase and number",
     }),
   email: z.string().email({ message: "Enter a valid email" }),

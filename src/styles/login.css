@@ -278,4 +278,7 @@ hr {
   color: white;
   font-weight: 900;
   font-size: large;
+}
+.dashboard .services#services .ant-avatar {
+  border-radius: 0;
 }/*# sourceMappingURL=login.css.map */

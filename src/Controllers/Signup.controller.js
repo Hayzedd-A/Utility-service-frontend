@@ -1,5 +1,6 @@
+import axios from "axios";
 import Notification from "../components/Global/Notifications";
-import { sendToServer, setLoginHeaders } from "../config/functions";
+import { baseURL, sendToServer, setLoginHeaders } from "../config/functions";
 import {
   user_email_schema,
   user_login_schema,
@@ -192,4 +193,19 @@ export const submitResetPassword = async data => {
     })();
     return false;
   }
+};
+
+export const verifyToken = async token => {
+  const response = await axios({
+    url: `${baseURL}/customers/verify-auth-token`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      token: token,
+    },
+  });
+  if (response.data.status !== "success") {
+    return false;
+  }
+  return true;
 };
