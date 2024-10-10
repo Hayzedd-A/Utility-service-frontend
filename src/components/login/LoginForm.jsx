@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
-import Header from "./Header";
 import { AppContext } from "../../config/AppContext";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { submitLogin } from "../../Controllers/Signup.controller";
 import LoadingSpinner from "../Global/LoadingSpinner";
-import UtilModal from "../Global/UtilModal";
-import { Result } from "antd";
 import PasswordRecovery from "./PasswordRecovery";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ setUtilContent }) {
   const { setLoginForm, modalOpen, setModalOpen } = useContext(AppContext);
@@ -14,6 +12,7 @@ function LoginForm({ setUtilContent }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigation = useNavigate();
 
   const handleForgotPassword = () => {
     // show a pop up of the password recovery interface
@@ -28,7 +27,7 @@ function LoginForm({ setUtilContent }) {
     setLoading(false);
     if (response) {
       //  redirect to dashboard page
-      window.location.href = "/dashboard";
+      navigation("/");
     }
   };
   return (

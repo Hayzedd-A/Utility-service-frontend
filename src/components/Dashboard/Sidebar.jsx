@@ -7,8 +7,16 @@ import referFriend from "../../assets/refer-friend.svg";
 import contectUs from "../../assets/contact-us.svg";
 import logout from "../../assets/logout.svg";
 import notification from "../../assets/notifications.svg";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigation = useNavigate();
+  const handleLogout = () => {
+    // Add your logout logic here
+    localStorage.removeItem("accessToken");
+    // Redirect to login page
+    navigation("/login");
+  };
   return (
     <div className="sidebar">
       <h1>Hi, Adebayo</h1>
@@ -16,35 +24,37 @@ function Sidebar() {
         <ul>
           <li>
             <img src={profile} alt="" />
-            <a href="#">Profile</a>
+            <button>Profile</button>
           </li>
           <li>
             <img src={notification} alt="" />
-            <a href="#">Notifications</a>
+            <button>Notifications</button>
           </li>
           <li>
             <img src={transaction} alt="" />
-            <a href="#">Transactions</a>
+            <button>Transactions</button>
           </li>
           <li>
             <img src={settings} alt="" />
-            <a href="#">Settings</a>
+            <button>Settings</button>
           </li>
           <li>
             <img src={referFriend} alt="" />
-            <a href="#">Refer Friend</a>
+            <button>Refer Friend</button>
           </li>
           <li>
             <img src={contectUs} alt="" />
-            <a href="#">Contact Us</a>
+            <button>Contact Us</button>
           </li>
           <li>
             <img src={aboutUs} alt="" />
-            <a href="#">About Us</a>
+            <button>About Us</button>
           </li>
           <li>
             <img src={logout} alt="" />
-            <a href="#">Logout</a>
+            <button onClick={handleLogout} href="#">
+              Logout
+            </button>
           </li>
         </ul>
       </div>

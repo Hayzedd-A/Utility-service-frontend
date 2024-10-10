@@ -21,7 +21,7 @@ function App() {
       element: <VerifyEmail />,
     },
     {
-      path: "/dashboard",
+      path: "/",
       element: <Dashboard />,
     },
     {

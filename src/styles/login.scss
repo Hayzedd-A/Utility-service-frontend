@@ -1,6 +1,7 @@
 $primary: rgb(117, 108, 255);
 $primary-light: rgb(196 192 255);
 $background: #efefee;
+$primary-dark: rgb(42, 31, 196);
 
 // view sizes
 $mobile: 600px;
@@ -179,9 +180,16 @@ hr {
             width: 2em;
             height: 2em;
           }
-          a {
+          button {
             text-decoration: none;
-            color: $primary;
+            background-color: transparent;
+            border: none;
+            font-size: large;
+            color: $primary-dark;
+            cursor: pointer;
+            &:hover {
+              color: $primary;
+            }
           }
         }
         a {

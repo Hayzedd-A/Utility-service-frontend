@@ -205,8 +205,15 @@ hr {
   width: 2em;
   height: 2em;
 }
-.dashboard .body .sidebar ul li a {
+.dashboard .body .sidebar ul li button {
   text-decoration: none;
+  background-color: transparent;
+  border: none;
+  font-size: large;
+  color: rgb(42, 31, 196);
+  cursor: pointer;
+}
+.dashboard .body .sidebar ul li button:hover {
   color: rgb(117, 108, 255);
 }
 .dashboard .body .sidebar ul a {

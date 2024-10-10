@@ -1,9 +1,11 @@
 import React from "react";
 import { Button, Result } from "antd";
+import { useNavigate } from "react-router-dom";
 const SuccessVerification = () => {
+  const navigation = useNavigate();
   const handleLogin = () => {
     // Redirect to login page
-    window.location = "/";
+    navigation("/");
   };
   return (
     <Result

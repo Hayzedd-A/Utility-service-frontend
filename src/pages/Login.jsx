@@ -24,7 +24,7 @@ function Login() {
           const response = await verifyToken(token);
           if (response) {
             // redirect to dashboard page
-            navigation("/dashboard");
+            navigation("/");
             return;
           }
           // else show login page
