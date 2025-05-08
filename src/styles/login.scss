@@ -37,6 +37,9 @@ hr {
     gap: 2em;
     padding: 4em;
     align-items: center;
+    @media (max-width: $screen-sm) {
+      padding: 0;
+    }
   }
   .login-component,
   .signup-component {
@@ -47,6 +50,10 @@ hr {
       form {
         &#signup {
           grid-template-columns: 1fr 1fr;
+          @media (max-width: $screen-sm) {
+            display: flex;
+            flex-direction: column;
+          }
           button {
             grid-column: span 2;
           }
@@ -120,6 +127,7 @@ hr {
     .login-component,
     .signup-component {
       display: none;
+      padding: 2em;
       &.active {
         display: grid;
       }

@@ -42,6 +42,11 @@ hr {
   padding: 4em;
   align-items: center;
 }
+@media (max-width: 576px) {
+  .login-page .form-container {
+    padding: 0;
+  }
+}
 .login-page .login-component,
 .login-page .signup-component {
   display: grid;
@@ -60,6 +65,15 @@ hr {
 .login-page .signup-component .login-form form#signup,
 .login-page .signup-component .signup-form form#signup {
   grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 576px) {
+  .login-page .login-component .login-form form#signup,
+  .login-page .login-component .signup-form form#signup,
+  .login-page .signup-component .login-form form#signup,
+  .login-page .signup-component .signup-form form#signup {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .login-page .login-component .login-form form#signup button,
 .login-page .login-component .signup-form form#signup button,
@@ -148,6 +162,7 @@ hr {
   .login-page .login-component,
   .login-page .signup-component {
     display: none;
+    padding: 2em;
   }
   .login-page .login-component.active,
   .login-page .signup-component.active {
