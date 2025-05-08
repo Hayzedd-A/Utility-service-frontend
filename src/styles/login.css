@@ -1,0 +1,304 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  background-color: #efefee;
+}
+
+.loading-spinner {
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+hr {
+  height: 1px;
+  inset: 0;
+  border: 0;
+  background-color: rgb(117, 108, 255);
+}
+
+.page-container {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.login-page {
+  display: flex;
+  position: relative;
+}
+.login-page .form-container {
+  display: flex;
+  gap: 2em;
+  padding: 4em;
+  align-items: center;
+}
+.login-page .login-component,
+.login-page .signup-component {
+  display: grid;
+  gap: 1em;
+  padding: 3em 4em;
+}
+.login-page .login-component .login-form form,
+.login-page .login-component .signup-form form,
+.login-page .signup-component .login-form form,
+.login-page .signup-component .signup-form form {
+  display: grid;
+  gap: 1em;
+}
+.login-page .login-component .login-form form#signup,
+.login-page .login-component .signup-form form#signup,
+.login-page .signup-component .login-form form#signup,
+.login-page .signup-component .signup-form form#signup {
+  grid-template-columns: 1fr 1fr;
+}
+.login-page .login-component .login-form form#signup button,
+.login-page .login-component .signup-form form#signup button,
+.login-page .signup-component .login-form form#signup button,
+.login-page .signup-component .signup-form form#signup button {
+  grid-column: span 2;
+}
+.login-page .login-component .login-form form label,
+.login-page .login-component .signup-form form label,
+.login-page .signup-component .login-form form label,
+.login-page .signup-component .signup-form form label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+.login-page .login-component .login-form form label input,
+.login-page .login-component .signup-form form label input,
+.login-page .signup-component .login-form form label input,
+.login-page .signup-component .signup-form form label input {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 1em;
+  inset: none;
+}
+.login-page .login-component .login-form form label input:focus,
+.login-page .login-component .signup-form form label input:focus,
+.login-page .signup-component .login-form form label input:focus,
+.login-page .signup-component .signup-form form label input:focus {
+  border: none;
+}
+.login-page .login-component .login-form form label input:active,
+.login-page .login-component .signup-form form label input:active,
+.login-page .signup-component .login-form form label input:active,
+.login-page .signup-component .signup-form form label input:active {
+  border: none;
+}
+.login-page .login-component .login-form form label .showPasswordIcon,
+.login-page .login-component .signup-form form label .showPasswordIcon,
+.login-page .signup-component .login-form form label .showPasswordIcon,
+.login-page .signup-component .signup-form form label .showPasswordIcon {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+}
+.login-page .login-component .login-form form button,
+.login-page .login-component .signup-form form button,
+.login-page .signup-component .login-form form button,
+.login-page .signup-component .signup-form form button {
+  padding: 0.5em 1em;
+  background-color: rgb(117, 108, 255);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login-page .login-component .login-form p button,
+.login-page .login-component .signup-form p button,
+.login-page .signup-component .login-form p button,
+.login-page .signup-component .signup-form p button {
+  background-color: unset;
+  border: none;
+  color: rgb(117, 108, 255);
+  cursor: pointer;
+}
+.login-page .login-component .header,
+.login-page .signup-component .header {
+  text-align: start;
+}
+.login-page .image-cover {
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  border-radius: 2em;
+  overflow: hidden;
+  top: 4em;
+  bottom: 4em;
+  right: 0;
+}
+.login-page .image-cover img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
+@media (max-width: 1200px) {
+  .login-page .login-component,
+  .login-page .signup-component {
+    display: none;
+  }
+  .login-page .login-component.active,
+  .login-page .signup-component.active {
+    display: grid;
+  }
+  .login-page .image-cover {
+    display: none;
+  }
+}
+
+.dashboard {
+  padding: 1em 2em;
+}
+.dashboard .navbar {
+  display: none;
+  padding: 8px 1em;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard .navbar svg {
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
+.dashboard .navbar > div {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+.dashboard .navbar > div img {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max: 600px) {
+  .dashboard .navbar {
+    display: flex;
+  }
+}
+.dashboard .body {
+  display: flex;
+  gap: 1em;
+}
+.dashboard .body .sidebar {
+  padding: 0 8px;
+  border-right: 8px solid rgb(117, 108, 255);
+  background-color: rgb(196, 192, 255);
+  flex: 1;
+  max-height: 100vh;
+  flex-basis: 8em;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard .body .sidebar ul {
+  display: grid;
+  gap: 1em;
+  list-style: none;
+}
+.dashboard .body .sidebar ul li {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.dashboard .body .sidebar ul li img {
+  width: 2em;
+  height: 2em;
+}
+.dashboard .body .sidebar ul li button {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  font-size: large;
+  color: rgb(42, 31, 196);
+  cursor: pointer;
+}
+.dashboard .body .sidebar ul li button:hover {
+  color: rgb(117, 108, 255);
+}
+.dashboard .body .sidebar ul a {
+  text-decoration: none;
+}
+.dashboard .body .main {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+.dashboard .wallet {
+  background-color: rgb(117, 108, 255);
+  border-radius: 1em;
+  color: #efefee;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+}
+.dashboard .wallet .amount button {
+  padding: 0.5em 1em;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: -2px -2px 8px 0px rgb(11, 103, 118);
+  border-radius: 1em;
+}
+.dashboard .wallet .amount button:hover {
+  background-color: rgb(196, 192, 255);
+  color: rgb(117, 108, 255);
+}
+.dashboard .wallet .plot {
+  flex: 3;
+}
+.dashboard #actions {
+  margin-top: 1em;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboard #actions button {
+  padding: 0.5em 1em;
+  background-color: rgb(117, 108, 255);
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: -2px -2px 8px 0px rgb(11, 103, 118);
+}
+.dashboard #actions button:hover {
+  background-color: rgb(196, 192, 255);
+  color: rgb(117, 108, 255);
+}
+.dashboard .services#services {
+  display: grid;
+  gap: 1em;
+  margin-top: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+}
+.dashboard .services#services .ant-card-bordered {
+  background-color: rgb(117, 108, 255);
+  color: white;
+}
+.dashboard .services#services .ant-card-bordered p,
+.dashboard .services#services .ant-card-bordered div {
+  color: white;
+  font-weight: 900;
+  font-size: large;
+}
+.dashboard .services#services .ant-avatar {
+  border-radius: 0;
+}/*# sourceMappingURL=login.css.map */
